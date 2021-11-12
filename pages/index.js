@@ -3,9 +3,15 @@ import Head from "next/head";
 
 export default function Home() {
 	const styles = {
-		inputContainer: "w-full h-10 flex",
-		input: "w-3/4 h-full rounded-md shadow-lg",
-		inputName: "w-1/4 text-lg",
+		page: "p-5 h-full bg-purple-100",
+		mainContainer: "space-y-5",
+		inputContainer:
+			"w-full cursor-pointer flex flex-col items-center",
+		inputName: "w-full text-center text-lg",
+		input: "w-full h-10 rounded-md shadow-lg",
+		repRanges: "flex flex-col",
+		dropdown: "w-full",
+		hidden: "hidden",
 	};
 
 	const [percentages, setPercentages] = useState(
@@ -13,6 +19,10 @@ export default function Home() {
 		{ cj: 0 },
 		{ bs: 0 }
 	);
+
+	const [dropdownS, setDropdownS] = useState(false);
+	const [dropdownCJ, setDropdownCJ] = useState(false);
+	const [dropdownBS, setDropdownBS] = useState(false);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -23,7 +33,7 @@ export default function Home() {
 	};
 
 	return (
-		<div className="p-5 h-screen bg-purple-100">
+		<div className={styles.page}>
 			<Head>
 				<title>Load Your Weights</title>
 				<meta
@@ -33,39 +43,174 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<main className="space-y-5">
+			<main className={styles.mainContainer}>
+				{/* Snatch */}
 				<div className={styles.inputContainer}>
-					<p className={styles.inputName}>
+					<p
+						className={styles.inputName}
+						onClick={() =>
+							setDropdownS(!dropdownS)
+						}
+					>
 						Snatch
 					</p>
-					<input
-						name="snatch"
-						className={styles.input}
-						onChange={handleChange}
-						value={percentages.snatch}
-					/>
+					<div
+						className={`${
+							!dropdownS ? styles.hidden : ""
+						}  ${styles.dropdown}`}
+					>
+						<input
+							name="snatch"
+							type="number"
+							className={styles.input}
+							onChange={handleChange}
+							value={percentages.snatch}
+						/>
+						<span className={styles.repRanges}>
+							<div>
+								{percentages.snatch * 0.95}{" "}
+								- 2
+							</div>
+							<div>
+								{percentages.snatch * 0.93}{" "}
+								- 3
+							</div>
+							<div>
+								{percentages.snatch * 0.9} -
+								4
+							</div>
+							<div>
+								{percentages.snatch * 0.88}{" "}
+								- 5
+							</div>
+							<div>
+								{percentages.snatch * 0.85}{" "}
+								- 6
+							</div>
+							<div>
+								{percentages.snatch * 0.83}{" "}
+								- 7
+							</div>
+							<div>
+								{percentages.snatch * 0.8} -
+								8
+							</div>
+							<div>
+								{percentages.snatch * 0.77}{" "}
+								- 9
+							</div>
+							<div>
+								{percentages.snatch * 0.75}{" "}
+								- 10
+							</div>
+						</span>
+					</div>
 				</div>
+				{/* Clean and Jerk */}
 				<div className={styles.inputContainer}>
-					<p className={styles.inputName}>
+					<p
+						className={styles.inputName}
+						onClick={() =>
+							setDropdownCJ(!dropdownCJ)
+						}
+					>
 						Clean & Jerk
 					</p>
-					<input
-						name="cj"
-						className={styles.input}
-						onChange={handleChange}
-						value={percentages.cj}
-					/>
+					<div
+						className={`${
+							!dropdownCJ ? styles.hidden : ""
+						}  ${styles.dropdown}`}
+					>
+						<input
+							name="cj"
+							type="number"
+							className={styles.input}
+							onChange={handleChange}
+							value={percentages.cj}
+						/>
+						<span className={styles.repRanges}>
+							<div>
+								{percentages.cj * 0.95} - 2
+							</div>
+							<div>
+								{percentages.cj * 0.93} - 3
+							</div>
+							<div>
+								{percentages.cj * 0.9} - 4
+							</div>
+							<div>
+								{percentages.cj * 0.88} - 5
+							</div>
+							<div>
+								{percentages.cj * 0.85} - 6
+							</div>
+							<div>
+								{percentages.cj * 0.83} - 7
+							</div>
+							<div>
+								{percentages.cj * 0.8} - 8
+							</div>
+							<div>
+								{percentages.cj * 0.77} - 9
+							</div>
+							<div>
+								{percentages.cj * 0.75} - 10
+							</div>
+						</span>
+					</div>
 				</div>
+				{/* Back Squat */}
 				<div className={styles.inputContainer}>
-					<p className={styles.inputName}>
+					<p
+						className={styles.inputName}
+						onClick={() =>
+							setDropdownBS(!dropdownBS)
+						}
+					>
 						Back Squat
 					</p>
-					<input
-						name="bs"
-						className={styles.input}
-						onChange={handleChange}
-						value={percentages.bs}
-					/>
+					<div
+						className={`${
+							!dropdownBS ? styles.hidden : ""
+						}  ${styles.dropdown}`}
+					>
+						<input
+							name="bs"
+							type="number"
+							className={styles.input}
+							onChange={handleChange}
+							value={percentages.bs}
+						/>
+						<span className={styles.repRanges}>
+							<div>
+								{percentages.bs * 0.95} - 2
+							</div>
+							<div>
+								{percentages.bs * 0.93} - 3
+							</div>
+							<div>
+								{percentages.bs * 0.9} - 4
+							</div>
+							<div>
+								{percentages.bs * 0.88} - 5
+							</div>
+							<div>
+								{percentages.bs * 0.85} - 6
+							</div>
+							<div>
+								{percentages.bs * 0.83} - 7
+							</div>
+							<div>
+								{percentages.bs * 0.8} - 8
+							</div>
+							<div>
+								{percentages.bs * 0.77} - 9
+							</div>
+							<div>
+								{percentages.bs * 0.75} - 10
+							</div>
+						</span>
+					</div>
 				</div>
 			</main>
 		</div>
